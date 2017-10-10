@@ -4,11 +4,13 @@ This app provides a full text search interface for the Tim Ferriss Show.
 
 ## Development
 
-Install docker for your platform and start a new container for development:
+The app needs a running postgres server. Using docker we can start a database and application server that run in the same network:
 
 ```shell
+docker network create stfsnet
+docker run --rm --network stfsnet --name pgserver -d -p 5432:5432 postgres:latest
 docker build -t stfs:latest .
-docker run --rm -it -v $(pwd):/app stfs:latest /bin/sh
+docker run --rm --network stfsnet --name app -it -v $(pwd):/app stfs:latest /bin/sh
 ```
 
 **Adding data**
