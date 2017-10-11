@@ -9,4 +9,4 @@ RUN apk update && \
 RUN mkdir app/
 WORKDIR /app
 
-RUN gem install nokogiri pry rake pg
+RUN gem install nokogiri pry rake pg rspec

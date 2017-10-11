@@ -13,6 +13,10 @@ docker build -t stfs:latest .
 docker run --rm --network stfsnet --name app -it -v $(pwd):/app stfs:latest /bin/sh
 ```
 
+**Testing**
+
+Running `rspec` inside the running container will run all tests.
+
 **Adding data**
 
 Data is extracted from HTML documents. Follow these steps to download new blog posts and seed the database from the resulting files:

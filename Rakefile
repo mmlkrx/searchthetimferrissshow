@@ -3,6 +3,7 @@ require 'open-uri'
 require 'pry'
 require 'pg'
 require_relative 'download_episode'
+require_relative 'app/lib/nokogiri_helper'
 
 desc 'download episode html files; optionally accepts html file'
 task :download_episodes, [:file] do |_, args|
@@ -18,11 +19,10 @@ task :download_episodes, [:file] do |_, args|
           Nokogiri::HTML(open('https://tim.blog/podcast/'))
         end
 
-  all_episodes = doc.xpath('//p[starts-with(@class, "podcast post")]')
+  all_episodes = NokogiriHelper.find_episode_elements(doc)
 
   all_links = all_episodes.map do |episode|
-    element = episode.css('a').first
-    element.attr('href')
+    NokogiriHelper.extract_url_from_episode_element(episode)
   end
 
   all_links.each do |link|
