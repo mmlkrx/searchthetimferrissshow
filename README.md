@@ -8,7 +8,7 @@ The app needs a running postgres server. Using docker we can start a database an
 
 ```shell
 docker network create stfsnet
-docker run --rm --network stfsnet --name pgserver -d -p 5432:5432 postgres:latest
+./bin/init_db.sh
 docker build -t stfs:latest .
 docker run --rm --network stfsnet --name app -it -v $(pwd):/app stfs:latest /bin/sh
 ```

@@ -1,10 +1,11 @@
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
+require 'pg'
 require_relative 'download_episode'
 
 desc 'download episode html files; optionally accepts html file'
-task :download_episodes, [:file] do |t, args|
+task :download_episodes, [:file] do |_, args|
   #
   # By default 'https://tim.blog/podcast/' only lists the 10 latest episodes.
   # To get around this, open the url in your browser and manually load older
@@ -30,6 +31,21 @@ task :download_episodes, [:file] do |t, args|
 end
 
 desc 'start a console'
-task :console do
+task console: ['db:connect'] do
   Pry.start
+end
+
+namespace :db do
+  #
+  # dbname and user are defined by $POSTGRES_USER in ./bin/init_db.sh
+  #
+  desc 'establish a database connection'
+  task :connect do
+    @conn ||= PG::Connection.new(
+                host: 'pgserver',
+                port: 5432,
+                dbname: 'stfs',
+                user: 'stfs'
+              )
+  end
 end
