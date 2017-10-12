@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'fileutils'
+require_relative 'file_name'
 
 class DownloadEpisode
   DOWNLOAD_DIR = 'html_files/episodes/'
@@ -10,11 +11,10 @@ class DownloadEpisode
   #
   def self.call(link)
     FileUtils.mkdir_p(DOWNLOAD_DIR) unless File.directory?(DOWNLOAD_DIR)
-    
-    uri       = URI.parse(link)
-    file_name = uri.path.gsub('/', '-')[1..-2]
-    file_path = DOWNLOAD_DIR + "#{file_name}.html"
-    
+
+    file_name = FileName.from_url(link)
+    file_path = DOWNLOAD_DIR + file_name
+
     if File.exists?(file_path)
       puts "Already exists: '#{file_path}'"
     else
