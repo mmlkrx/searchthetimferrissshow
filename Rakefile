@@ -21,12 +21,12 @@ task :download_episodes, [:file] do |_, args|
 
   all_episodes = NokogiriHelper.find_episode_elements(doc)
 
-  all_links = all_episodes.map do |episode|
+  all_urls = all_episodes.map do |episode|
     NokogiriHelper.extract_url_from_episode_element(episode)
   end
 
-  all_links.each do |link|
-    DownloadEpisode.call(link)
+  all_urls.each do |url|
+    DownloadEpisode.call(url)
   end
 end
 
