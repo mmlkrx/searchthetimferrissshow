@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'uri'
 
 RSpec.describe NokogiriHelper do
-  describe 'find_episode_elements' do
+  describe '.find_episode_elements' do
     subject { described_class.find_episode_elements(nokogiri_doc) }
 
     let(:nokogiri_doc) { Nokogiri::HTML(doc) }
@@ -18,7 +18,7 @@ RSpec.describe NokogiriHelper do
     end
   end
 
-  describe '#extract_url_from_episode_element' do
+  describe '.extract_url_from_episode_element' do
     subject { described_class.extract_url_from_episode_element(element) }
 
     let(:element) { Nokogiri::HTML(doc)}

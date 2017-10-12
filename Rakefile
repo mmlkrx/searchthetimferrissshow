@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 require 'pg'
-require_relative 'download_episode'
+require_relative 'app/lib/download_episode'
 require_relative 'app/lib/nokogiri_helper'
 
 desc 'download episode html files; optionally accepts html file'
