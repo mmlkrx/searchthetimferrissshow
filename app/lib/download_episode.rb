@@ -12,7 +12,8 @@ class DownloadEpisode
   def self.call(link)
     FileUtils.mkdir_p(DOWNLOAD_DIR) unless File.directory?(DOWNLOAD_DIR)
 
-    file_name = FileName.from_url(link)
+    uri       = URI.parse(link)
+    file_name = FileName.from_url(uri)
     file_path = DOWNLOAD_DIR + file_name
 
     if File.exists?(file_path)
