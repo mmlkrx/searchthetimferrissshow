@@ -1,5 +1,3 @@
-require 'uri'
-
 class FileName
   def self.from_uri(uri)
     uri.is_a?(URI) ? parsed_uri = uri : parsed_uri = URI.parse(uri)

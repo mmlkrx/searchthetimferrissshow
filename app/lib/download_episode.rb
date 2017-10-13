@@ -1,7 +1,3 @@
-require 'open-uri'
-require 'fileutils'
-require_relative 'file_name'
-
 class DownloadEpisode
   DOWNLOAD_DIR = 'html_files/episodes/'
 

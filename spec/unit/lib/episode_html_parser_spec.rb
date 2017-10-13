@@ -1,5 +1,3 @@
-require_relative '../../../app/lib/episode_html_parser'
-
 RSpec.describe EpisodeHtmlParser do
   let(:parser) { described_class.new(html_file) }
   let(:html_file) { File.read('spec/fixtures/2017-09-13-ray-dalio.html') }

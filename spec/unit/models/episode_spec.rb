@@ -1,5 +1,3 @@
-require_relative '../../../app/models/episode'
-
 RSpec.describe Episode do
   subject do
     described_class.new(

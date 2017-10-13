@@ -1,9 +1,4 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-require 'pg'
-require_relative 'app/lib/download_episode'
-require_relative 'app/lib/nokogiri_helper'
+require File.expand_path('../config/environment', __FILE__)
 
 desc 'download episode html files; optionally accepts html file'
 task :download_episodes, [:file] do |_, args|

@@ -1,7 +1,3 @@
-require_relative '../../../app/lib/nokogiri_helper'
-require 'nokogiri'
-require 'uri'
-
 RSpec.describe NokogiriHelper do
   describe '.find_episode_elements' do
     subject { described_class.find_episode_elements(nokogiri_doc) }
