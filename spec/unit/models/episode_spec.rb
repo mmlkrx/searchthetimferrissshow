@@ -35,7 +35,7 @@ RSpec.describe Episode do
     end
 
     it 'delegates description to EpisodeHtmlParser' do
-      expect_any_instance_of(EpisodeHtmlParser).to receive(:extract_description)
+      expect_any_instance_of(EpisodeHtmlParser).to receive(:filtered_description)
       subject
     end
   end

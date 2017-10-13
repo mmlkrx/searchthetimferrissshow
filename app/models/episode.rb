@@ -15,7 +15,7 @@ class Episode
 
     title = parser.extract_title
     publishing_date = parser.extract_publishing_date
-    description = parser.extract_description
+    description = parser.filtered_description
 
     new(title: title, publishing_date: publishing_date, description: description)
   end

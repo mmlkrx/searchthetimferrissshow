@@ -1,4 +1,5 @@
 require 'nokogiri'
+require_relative 'episode_filter'
 
 class EpisodeHtmlParser
   attr_reader :doc
@@ -17,7 +18,11 @@ class EpisodeHtmlParser
     doc.css('time').first.attributes['datetime'].value
   end
 
-  def extract_description
-    doc.css("div[class='entry-content']").css('p').text
+  def raw_description
+    doc.css("div[class='entry-content']").css('p')
+  end
+
+  def filtered_description
+    EpisodeFilter.filter_description(raw_description)
   end
 end
