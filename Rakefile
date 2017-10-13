@@ -33,4 +33,9 @@ namespace :db do
                 user: 'stfs'
               )
   end
+
+  desc 'load the table schema'
+  task :schema_load do
+    system "psql -h pgserver -p 5432 -U stfs stfs < db/schema.sql"
+  end
 end
