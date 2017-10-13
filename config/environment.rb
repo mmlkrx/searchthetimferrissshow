@@ -10,3 +10,6 @@ require File.expand_path('../../app/lib/file_name', __FILE__)
 require File.expand_path('../../app/lib/nokogiri_helper', __FILE__)
 
 require File.expand_path('../../app/models/episode', __FILE__)
+
+require File.expand_path('../../app/workflows/download_episodes_from_url', __FILE__)
+require File.expand_path('../../app/workflows/download_episodes_from_file', __FILE__)

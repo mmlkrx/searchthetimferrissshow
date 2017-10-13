@@ -8,20 +8,10 @@ task :download_episodes, [:file] do |_, args|
   # episodes by clicking on 'LOAD MORE PODCASTS'. Then save the page source as
   # a file and pass its path to the rake task.
   #
-  doc = if args.file
-          Nokogiri::HTML(File.read(args.file))
-        else
-          Nokogiri::HTML(open('https://tim.blog/podcast/'))
-        end
-
-  all_episodes = NokogiriHelper.find_episode_elements(doc)
-
-  all_urls = all_episodes.map do |episode|
-    NokogiriHelper.extract_url_from_episode_element(episode)
-  end
-
-  all_urls.each do |url|
-    DownloadEpisode.call(url)
+  if args.file
+    Workflow::DownloadEpisodesFromFile.call(args.file)
+  else
+    Workflow::DownloadEpisodesFromUrl.call('https://tim.blog/podcast/')
   end
 end
 

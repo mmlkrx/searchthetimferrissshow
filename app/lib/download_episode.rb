@@ -1,5 +1,5 @@
 class DownloadEpisode
-  DOWNLOAD_DIR = 'html_files/episodes/'
+  DOWNLOAD_DIR = ENV['RACK_ENV'] == 'test' ? 'tmp/' : 'html_files/episodes/'
 
   #
   # This method expects a url to a podcast blogpost:
