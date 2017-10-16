@@ -11,6 +11,13 @@ GEM
     pry (0.11.1)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    puma (3.10.0)
+    rack (2.0.3)
+    rack-app (7.3.2)
+      rack
+    rack-app-front_end (0.22.0)
+      rack-app (>= 6.3.1)
+      tilt
     rake (12.1.0)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
@@ -25,6 +32,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
+    tilt (2.0.8)
 
 PLATFORMS
   ruby
@@ -33,6 +41,9 @@ DEPENDENCIES
   nokogiri
   pg
   pry
+  puma
+  rack-app
+  rack-app-front_end
   rake
   rspec
 

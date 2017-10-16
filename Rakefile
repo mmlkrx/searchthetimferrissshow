@@ -49,3 +49,8 @@ namespace :db do
     end
   end
 end
+
+desc 'start server'
+task :server do
+  system "puma -b tcp://0.0.0.0:9292 config.ru"
+end

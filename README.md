@@ -32,3 +32,7 @@ Data is extracted from HTML documents. Follow these steps to download new blog p
    $ rake db:schema_load
    $ rake db:seed
    ```
+
+## Usage
+
+Follow the instructions in the development section to get a running database and development container running. From the development container shell run `rake server` and open your browser at `localhost:9292` to access the web interface.
