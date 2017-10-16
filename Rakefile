@@ -38,4 +38,14 @@ namespace :db do
   task :schema_load do
     system "psql -h pgserver -p 5432 -U stfs stfs < db/schema.sql"
   end
+
+  desc 'seed database from html files'
+  task seed: :connect do
+    Dir['html_files/episodes/*'].each_with_index do |file, i|
+      episode = Episode.new_from_html(File.read(file))
+      puts "Inserting #{episode.title}"
+      @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, publishing_date, description) VALUES ($1, $2, $3)')
+      @conn.exec_prepared("statement-#{i}", [episode.title, episode.publishing_date, episode.description])
+    end
+  end
 end
