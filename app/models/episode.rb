@@ -3,7 +3,7 @@ class Episode
 
   def initialize(title:, publishing_date:, description:)
     @title           = title
-    @publishing_date = DateTime.parse(publishing_date)
+    @publishing_date = Date.parse(publishing_date)
     @description     = description
   end
 
