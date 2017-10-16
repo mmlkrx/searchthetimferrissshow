@@ -8,5 +8,7 @@ RUN apk update && \
 
 RUN mkdir app/
 WORKDIR /app
+COPY Gemfile Gemfile.lock /app/
 
-RUN gem install nokogiri pry rake pg rspec
+RUN bundle install --path vendor/bundle
+COPY . /app

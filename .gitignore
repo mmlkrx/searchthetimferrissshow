@@ -1,3 +1,4 @@
 html_files/
 .DS_Store
 tmp/
+vendor/
