@@ -10,7 +10,7 @@ The app needs a running postgres server. Using docker we can start a database an
 $ docker network create stfsnet
 $ ./bin/init_db.sh
 $ docker build -t stfs:latest .
-$ docker run --rm --network stfsnet --name app -it -v $(pwd):/app stfs:latest /bin/sh
+$ docker run --rm --name app --network stfsnet -it -v $(pwd):/app -p 127.0.0.1:9292:9292 stfs:latest /bin/sh
 ```
 
 To play around with the code, use `rake console`.

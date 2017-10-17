@@ -5,6 +5,8 @@ require 'pg'
 require 'rack/app'
 require 'rack/app/front_end'
 
+require File.expand_path('../initializers/database', __FILE__)
+
 require File.expand_path('../../app/lib/download_episode', __FILE__)
 require File.expand_path('../../app/lib/episode_filter', __FILE__)
 require File.expand_path('../../app/lib/episode_html_parser', __FILE__)

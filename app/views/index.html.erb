@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>STFS</title>
+  </head>
+  <body>
+    <form>
+      <input type="search" name="q" placeholder="Search The Tim Ferriss Show...">
+    </form>
+    <% if @episodes %>
+      <% @episodes.each do |episode| %>
+        <div class="results">
+          <h3><%= episode.title %></h3>
+          <p><%= episode.description %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </body>
+</html>

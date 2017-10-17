@@ -52,5 +52,5 @@ end
 
 desc 'start server'
 task :server do
-  system "puma -b tcp://0.0.0.0:9292 config.ru"
+  system "puma -b tcp://0.0.0.0:9292 -v config.ru"
 end
