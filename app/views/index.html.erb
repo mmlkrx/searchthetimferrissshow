@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+    #main-wrapper {
+      width: 70%;
+      max-width: 50em;
+      margin: auto;
+    }
+    input[type=search] {
+      width: 80%;
+      margin-top: 10em;
+      margin-bottom: 2em;
+    }
+    </style>
     <title>STFS</title>
   </head>
   <body>
-    <form>
-      <input type="search" name="q" placeholder="Search The Tim Ferriss Show...">
-    </form>
-    <% if @episodes %>
-      <% @episodes.each do |episode| %>
-        <div class="results">
-          <h3><%= episode.title %></h3>
-          <p><%= episode.description %></p>
+    <div id="main-wrapper">
+      <div id="search-wrapper">
+        <form>
+          <input autofocus type="search" name="q" placeholder="Search The Tim Ferriss Show...">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <% if @episodes %>
+        <div id="results-wrapper">
+          <% @episodes.each do |episode| %>
+            <div class="results">
+              <h3><%= episode.title %></h3>
+              <p><%= episode.description %></p>
+            </div>
+          <% end %>
         </div>
       <% end %>
-    <% end %>
+    </div>
   </body>
 </html>
