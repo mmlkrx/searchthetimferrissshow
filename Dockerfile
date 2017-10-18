@@ -10,5 +10,5 @@ RUN mkdir app/
 WORKDIR /app
 COPY Gemfile Gemfile.lock /app/
 
-RUN bundle install --path vendor/bundle
+RUN bundle install --jobs 4
 COPY . /app
