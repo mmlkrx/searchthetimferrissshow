@@ -1,6 +1,6 @@
 CONN = PG::Connection.new(
-  host: 'pgserver',
-  port: 5432,
-  dbname: 'stfs',
-  user: 'stfs'
+  host: Config::Db.host,
+  port: Config::Db.port,
+  dbname: Config::Db.name,
+  user: Config::Db.user
 )

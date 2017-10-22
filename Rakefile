@@ -27,16 +27,16 @@ namespace :db do
   desc 'establish a database connection'
   task :connect do
     @conn ||= PG::Connection.new(
-                host: 'pgserver',
-                port: 5432,
-                dbname: 'stfs',
-                user: 'stfs'
+                host: Config::Db.host,
+                port: Config::Db.port,
+                dbname: Config::Db.name,
+                user: Config::Db.user
               )
   end
 
   desc 'load the table schema'
   task :schema_load do
-    system "psql -h pgserver -p 5432 -U stfs stfs < db/schema.sql"
+    system "psql -h #{Config::Db.host} -p #{Config::Db.port} -U #{Config::Db.user} #{Config::Db.name} < db/schema.sql"
   end
 
   desc 'seed database from html files'
