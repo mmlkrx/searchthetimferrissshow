@@ -4,8 +4,12 @@ class FullTextSearch
 
     statement = "search"
     sql_query = <<~SQL
-      SELECT * FROM episodes
-      WHERE document @@ plainto_tsquery($1);
+      SELECT
+        ts_headline(title, keywords, 'HighlightAll=true') AS title,
+        publishing_date,
+        ts_headline(description, keywords, 'MaxFragments=2,MaxWords=20,MinWords=19') AS description
+      FROM episodes, plainto_tsquery($1) AS keywords
+      WHERE document @@ keywords;
     SQL
 
     CONN.prepare(statement, sql_query)
