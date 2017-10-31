@@ -3,7 +3,8 @@ class App < Rack::App
 
   namespace '/stfs' do
     get '/' do
-      @episodes = FullTextSearch.find_episodes(params['q'])
+      @query    = params['q']
+      @episodes = FullTextSearch.find_episodes(@query)
       render './views/index.html.erb'
     end
   end

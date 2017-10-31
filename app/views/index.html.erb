@@ -33,7 +33,9 @@
           <button type="submit">Search</button>
         </form>
       </div>
-      <% if @episodes %>
+      <% if @episodes.empty? %>
+        <h2><%= "There are no search results for '#{@query}'"%></h2>
+      <% else %>
         <div id="results-wrapper">
           <% @episodes.each do |episode| %>
             <div class="results">
