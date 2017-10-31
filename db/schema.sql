@@ -41,7 +41,8 @@ CREATE TABLE episodes (
     id integer NOT NULL,
     title text NOT NULL,
     publishing_date date NOT NULL,
-    description text NOT NULL
+    description text NOT NULL,
+    document tsvector
 );
 
 
@@ -89,6 +90,13 @@ ALTER TABLE ONLY episodes
 
 ALTER TABLE ONLY episodes
     ADD CONSTRAINT episodes_title_key UNIQUE (title);
+
+
+--
+-- Name: episodes_document_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX episodes_document_idx ON episodes USING gin (document);
 
 
 --

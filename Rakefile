@@ -52,6 +52,12 @@ namespace :db do
       end
     end
   end
+
+  desc 'build text search documents'
+  task build_ts_documents: :connect do
+    res = @conn.exec("UPDATE episodes SET document = to_tsvector(title || ' ' || description) WHERE document IS NULL;")
+    p res
+  end
 end
 
 desc 'start server'

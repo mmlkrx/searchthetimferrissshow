@@ -5,8 +5,7 @@ class FullTextSearch
     statement = "search"
     sql_query = <<~SQL
       SELECT * FROM episodes
-      WHERE to_tsvector(title || ' ' || description)
-      @@ plainto_tsquery($1);
+      WHERE document @@ plainto_tsquery($1);
     SQL
 
     CONN.prepare(statement, sql_query)

@@ -32,6 +32,10 @@ Data is extracted from HTML documents. Follow these steps to download new blog p
    $ rake db:schema_load
    $ rake db:seed
    ```
+3. Build a text search [document](https://www.postgresql.org/docs/10/static/textsearch-intro.html#textsearch-document) for each entry
+   ```shell
+   $ rake db:build_ts_documents
+   ```
 
 ## Usage
 
