@@ -76,26 +76,19 @@ ALTER TABLE ONLY episodes ALTER COLUMN id SET DEFAULT nextval('episodes_id_seq':
 
 
 --
--- Data for Name: episodes; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY episodes (id, title, publishing_date, description) FROM stdin;
-\.
-
-
---
--- Name: episodes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('episodes_id_seq', 1, false);
-
-
---
 -- Name: episodes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY episodes
     ADD CONSTRAINT episodes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: episodes_title_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY episodes
+    ADD CONSTRAINT episodes_title_key UNIQUE (title);
 
 
 --

@@ -42,10 +42,14 @@ namespace :db do
   desc 'seed database from html files'
   task seed: :connect do
     Dir['html_files/episodes/*'].each_with_index do |file, i|
-      episode = Episode.new_from_html(File.read(file))
-      puts "Inserting #{episode.title}"
-      @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, publishing_date, description) VALUES ($1, $2, $3)')
-      @conn.exec_prepared("statement-#{i}", [episode.title, episode.publishing_date, episode.description])
+      begin
+        episode = Episode.new_from_html(File.read(file))
+        @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, publishing_date, description) VALUES ($1, $2, $3)')
+        @conn.exec_prepared("statement-#{i}", [episode.title, episode.publishing_date, episode.description])
+        puts "Inserted #{episode.title}"
+      rescue PG::UniqueViolation => error
+        puts "Already exists: #{episode.title}"
+      end
     end
   end
 end
