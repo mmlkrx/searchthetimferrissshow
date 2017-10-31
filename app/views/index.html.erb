@@ -29,11 +29,11 @@
     <div id="main-wrapper">
       <div id="search-wrapper">
         <form>
-          <input autofocus type="search" name="q" placeholder="Search The Tim Ferriss Show...">
+          <input autofocus type="search" name="q" placeholder="Search The Tim Ferriss Show..." value="<%= @query %>">
           <button type="submit">Search</button>
         </form>
       </div>
-      <% if @episodes.empty? %>
+      <% if @episodes.empty? && !@query.nil? %>
         <h2><%= "There are no search results for '#{@query}'"%></h2>
       <% else %>
         <div id="results-wrapper">

@@ -1,6 +1,6 @@
 class FullTextSearch
   def self.find_episodes(query)
-    return if query.nil?
+    [] if query.nil?
 
     statement = "search"
     sql_query = <<~SQL
