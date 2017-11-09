@@ -16,7 +16,7 @@
       color: rgb(237, 93, 64);
     }
     p {
-      margin-top: .5em;
+      margin: .5em 0 .5em 0;
     }
     h3 {
       margin: 2em 0 0 0;
@@ -41,6 +41,7 @@
             <div class="results">
               <h3><%= episode.title %></h3>
               <p><%= episode.description %></p>
+              <a href="<%= episode.url %>" target="_blank">original blogpost ⬈</a>
             </div>
           <% end %>
         </div>
