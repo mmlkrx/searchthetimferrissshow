@@ -42,7 +42,8 @@ CREATE TABLE episodes (
     title text NOT NULL,
     publishing_date date NOT NULL,
     description text NOT NULL,
-    document tsvector
+    document tsvector,
+    url text NOT NULL
 );
 
 

@@ -15,6 +15,10 @@ class EpisodeHtmlParser
     doc.css('time').first.attributes['datetime'].value
   end
 
+  def extract_url
+    doc.css("link[rel='canonical']")[0]['href']
+  end
+
   def raw_description
     doc.css("div[class='entry-content']").css('p')
   end

@@ -18,6 +18,14 @@ RSpec.describe EpisodeHtmlParser do
     end
   end
 
+  describe '#extract_url' do
+    subject { parser.extract_url }
+
+    it 'returns the episodes blogpost url' do
+      expect(subject).to eq 'https://tim.blog/2017/09/13/ray-dalio/'
+    end
+  end
+
   describe '#raw_description' do
     subject { parser.raw_description }
 
