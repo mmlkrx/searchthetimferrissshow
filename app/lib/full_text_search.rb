@@ -10,7 +10,8 @@ class FullTextSearch
         ts_headline(description, keywords, 'MaxFragments=2,MaxWords=20,MinWords=19') AS description,
         url
       FROM episodes, plainto_tsquery($1) AS keywords
-      WHERE document @@ keywords;
+      WHERE document @@ keywords
+      ORDER BY ts_rank(document, keywords) DESC;
     SQL
 
     CONN.prepare(statement, sql_query)

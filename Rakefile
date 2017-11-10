@@ -55,7 +55,13 @@ namespace :db do
 
   desc 'build text search documents'
   task build_ts_documents: :connect do
-    res = @conn.exec("UPDATE episodes SET document = to_tsvector(title || ' ' || description) WHERE document IS NULL;")
+    sql = <<~SQL
+      UPDATE episodes SET document =
+        setweight(to_tsvector(title), 'A') ||
+        setweight(to_tsvector(description), 'B')
+      WHERE document IS NULL;
+    SQL
+    res = @conn.exec(sql)
     p res
   end
 end
