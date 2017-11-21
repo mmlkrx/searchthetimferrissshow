@@ -2,6 +2,9 @@
 <html>
   <head>
     <style>
+    * {
+      font-family: helvetica;
+    }
     #main-wrapper {
       width: 70%;
       max-width: 50em;
@@ -10,7 +13,7 @@
     input[type=search] {
       width: 80%;
       margin-top: 10em;
-      margin-bottom: 2em;
+      margin-bottom: 4em;
     }
     b {
       color: rgb(237, 93, 64);
@@ -18,8 +21,11 @@
     p {
       margin: .5em 0 .5em 0;
     }
-    h3 {
-      margin: 2em 0 0 0;
+    .result {
+      padding: 1em;
+    }
+    .result:nth-child(even) {
+      background: rgb(251, 251, 251);
     }
     </style>
     <meta charset="UTF-8">
@@ -38,7 +44,7 @@
       <% else %>
         <div id="results-wrapper">
           <% @episodes.each do |episode| %>
-            <div class="results">
+            <div class="result">
               <h3><%= episode.title %></h3>
               <p><%= episode.description %></p>
               <a href="<%= episode.url %>" target="_blank">original blogpost ⬈</a>
