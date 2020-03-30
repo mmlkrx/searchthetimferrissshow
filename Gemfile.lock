@@ -40,14 +40,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  nokogiri
-  pg
-  pry
-  puma
-  rack-app
-  rack-app-front_end
-  rake
-  rspec
+  nokogiri (~> 1.10)
+  pg (~> 1.2)
+  pry (~> 0.13)
+  puma (~> 4.3)
+  rack-app (~> 7.6)
+  rack-app-front_end (~> 0.22)
+  rake (~> 13.0)
+  rspec (~> 3.9)
 
 BUNDLED WITH
    2.1.2
