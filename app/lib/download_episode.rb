@@ -15,7 +15,7 @@ class DownloadEpisode
     if File.exists?(file_path)
       puts "Already exists: '#{file_path}'"
     else
-      open(file_path, 'wb') do |file|
+      File.open(file_path, 'w') do |file|
         puts "Downloading #{uri}"
         URI.open(uri) do |uri|
           file.write(uri.read)
