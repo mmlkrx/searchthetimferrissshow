@@ -1,7 +1,7 @@
 class Workflow
   class DownloadEpisodesFromUrl
     def self.call(url)
-      doc = Nokogiri::HTML(open(url))
+      doc = Nokogiri::HTML(URI.open(url))
 
       episodes = find_all_episode_elements_in_html_doc(doc)
 

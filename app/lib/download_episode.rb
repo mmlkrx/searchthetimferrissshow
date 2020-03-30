@@ -17,7 +17,7 @@ class DownloadEpisode
     else
       open(file_path, 'wb') do |file|
         puts "Downloading #{uri}"
-        open(uri) do |uri|
+        URI.open(uri) do |uri|
           file.write(uri.read)
         end
       end
