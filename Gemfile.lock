@@ -20,7 +20,7 @@ GEM
     rack-app-front_end (0.22.0)
       rack-app (>= 6.3.1)
       tilt
-    rake (12.1.0)
+    rake (13.0.1)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)
