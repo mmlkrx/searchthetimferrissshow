@@ -27,7 +27,7 @@ end
 
 namespace :db do
   #
-  # dbname and user are defined by $POSTGRES_USER in ./bin/init_db.sh
+  # dbname and user are defined by $POSTGRES_USER in ./db/start.sh
   #
   desc 'establish a database connection'
   task :connect do
