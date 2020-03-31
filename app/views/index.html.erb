@@ -60,7 +60,7 @@
       <div>
         <form>
           <div id="search-wrapper">
-            <input autofocus type="search" name="q" placeholder="Start typing and press enter to search..." value="<%= @query %>">
+            <input autofocus type="search" name="q" placeholder="Start typing and press enter to search..." value="<%= @query %>" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
           </div>
           <button type="submit">Search</button>
         </form>
