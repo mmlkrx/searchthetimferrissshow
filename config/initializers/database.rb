@@ -1,3 +1,5 @@
+require 'pg'
+
 CONN = PG::Connection.new(
   host: Config::Db.host,
   port: Config::Db.port,

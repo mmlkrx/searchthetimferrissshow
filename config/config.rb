@@ -1,3 +1,5 @@
+require 'yaml'
+
 class Config
   class Db
     def self.host

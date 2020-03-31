@@ -1,3 +1,6 @@
+require 'rack/app'
+require 'rack/app/front_end'
+
 class App < Rack::App
   extend Rack::App::FrontEnd
 

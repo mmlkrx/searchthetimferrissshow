@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'nokogiri'
+
 class Workflow
   class DownloadEpisodesFromUrl
     def self.call(url)

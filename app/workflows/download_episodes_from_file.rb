@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 class Workflow
   class DownloadEpisodesFromFile
     def self.call(file_path)

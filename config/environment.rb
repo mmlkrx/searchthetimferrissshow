@@ -1,10 +1,3 @@
-require 'yaml'
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-require 'pg'
-require 'rack/app'
-require 'rack/app/front_end'
 #
 # Config
 #

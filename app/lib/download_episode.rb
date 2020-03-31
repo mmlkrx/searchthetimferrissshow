@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class DownloadEpisode
   DOWNLOAD_DIR = ENV['RACK_ENV'] == 'test' ? 'tmp/' : 'html_files/episodes/'
 

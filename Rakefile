@@ -1,3 +1,5 @@
+require 'pry'
+require 'pg'
 require File.expand_path('../config/environment', __FILE__)
 
 desc 'download episode html files; optionally accepts html file'

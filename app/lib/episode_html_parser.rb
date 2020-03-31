@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 class EpisodeHtmlParser
   attr_reader :doc
 
