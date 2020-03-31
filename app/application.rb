@@ -1,5 +1,6 @@
 require 'rack/app'
 require 'rack/app/front_end'
+require_relative 'lib/full_text_search'
 
 class App < Rack::App
   extend Rack::App::FrontEnd

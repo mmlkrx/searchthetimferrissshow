@@ -1,4 +1,5 @@
 require 'open-uri'
+require_relative './file_name'
 
 class DownloadEpisode
   DOWNLOAD_DIR = ENV['RACK_ENV'] == 'test' ? 'tmp/' : 'html_files/episodes/'

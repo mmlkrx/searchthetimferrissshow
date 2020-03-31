@@ -1,6 +1,9 @@
 require 'pry'
 require 'pg'
-require File.expand_path('../config/environment', __FILE__)
+require_relative './config/environment'
+require_relative './app/workflows/download_episodes_from_file'
+require_relative './app/workflows/download_episodes_from_url'
+require_relative './app/models/episode'
 
 desc 'download episode html files; optionally accepts html file'
 task :download_episodes, [:file] do |_, args|

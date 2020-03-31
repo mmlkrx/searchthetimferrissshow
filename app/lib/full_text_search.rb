@@ -1,3 +1,5 @@
+require_relative '../models/episode'
+
 class FullTextSearch
   def self.find_episodes(query)
     [] if query.nil?

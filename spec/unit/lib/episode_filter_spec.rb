@@ -1,3 +1,5 @@
+require_relative '../../../app/lib/episode_filter'
+
 RSpec.describe EpisodeFilter do
   describe '.filter_description' do
     subject { described_class.filter_description(description) }

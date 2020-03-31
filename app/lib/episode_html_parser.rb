@@ -1,4 +1,5 @@
 require 'nokogiri'
+require_relative './episode_filter'
 
 class EpisodeHtmlParser
   attr_reader :doc

@@ -1,6 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 require 'pry'
-require File.expand_path('../../config/environment', __FILE__)
+require_relative '../config/environment'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

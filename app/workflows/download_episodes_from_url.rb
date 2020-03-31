@@ -1,5 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
+require_relative '../lib/nokogiri_helper'
+require_relative '../lib/download_episode'
 
 class Workflow
   class DownloadEpisodesFromUrl

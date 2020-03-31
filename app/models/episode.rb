@@ -1,3 +1,5 @@
+require_relative '../lib/episode_html_parser'
+
 class Episode
   attr_accessor :title, :publishing_date, :description, :url
 

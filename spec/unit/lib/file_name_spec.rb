@@ -1,3 +1,5 @@
+require_relative '../../../app/lib/file_name'
+
 RSpec.describe FileName do
   describe '.from_uri' do
     subject { described_class.from_uri(uri) }
