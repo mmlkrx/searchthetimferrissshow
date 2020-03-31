@@ -5,15 +5,32 @@
     * {
       font-family: helvetica;
     }
+    form {
+      display: flex;
+      margin-top: 6em;
+      margin-bottom: 4em;
+    }
+    form > button {
+      display: none;
+    }
     #main-wrapper {
       width: 70%;
       max-width: 50em;
       margin: auto;
     }
+    #search-wrapper {
+      flex: 1;
+      padding: 5px 8px 0 16px;
+      border: 1px solid #dfe1e5;
+      border-radius: 4px;
+    }
     input[type=search] {
-      width: 80%;
-      margin-top: 10em;
-      margin-bottom: 4em;
+      width: 100%;
+      font-size: 16px;
+      line-height: 34px;
+      height: 34px;
+      border: none;
+      outline: none;
     }
     b {
       color: rgb(237, 93, 64);
@@ -23,9 +40,16 @@
     }
     .result {
       padding: 1em;
+      border-radius: 3px;
     }
     .result:nth-child(even) {
-      background: rgb(251, 251, 251);
+      background: rgb(249, 249, 249);
+    }
+    .result > p {
+      color: #565656;
+    }
+    .result > a {
+      color: tomato;
     }
     </style>
     <meta charset="UTF-8">
@@ -33,9 +57,11 @@
   </head>
   <body>
     <div id="main-wrapper">
-      <div id="search-wrapper">
+      <div>
         <form>
-          <input autofocus type="search" name="q" placeholder="Search The Tim Ferriss Show..." value="<%= @query %>">
+          <div id="search-wrapper">
+            <input autofocus type="search" name="q" placeholder="Start typing and press enter to search..." value="<%= @query %>">
+          </div>
           <button type="submit">Search</button>
         </form>
       </div>
