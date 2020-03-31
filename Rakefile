@@ -10,8 +10,9 @@ task :download_episodes, [:file] do |_, args|
   #
   # By default 'https://tim.blog/podcast/' only lists the 10 latest episodes.
   # To get around this, open the url in your browser and manually load older
-  # episodes by clicking on 'LOAD MORE PODCASTS'. Then save the page source as
-  # a file and pass its path to the rake task.
+  # episodes by clicking on 'LOAD MORE PODCASTS', or use javascript to do it for you ;)
+  # setInterval(function () {document.getElementById("load-more-podcasts").click();}, 1000);
+  # Then save the page source as a file and pass its path to the rake task.
   #
   if args.file
     Workflow::DownloadEpisodesFromFile.call(args.file)
