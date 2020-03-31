@@ -1,3 +1,3 @@
 --require spec_helper
 --format doc
---exclude-pattern "**/integration/workflows/*_spec.rb"
+--exclude-pattern "**/end-to-end/workflows/*_spec.rb"

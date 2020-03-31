@@ -17,7 +17,7 @@ To play around with the code, use `rake console`.
 
 **Testing**
 
-Running `rspec` inside the running container will run all unit tests. To verify that all css selectors still work, explicitly run the integration tests `rspec spec/integration/`.
+Running `rspec` inside the running container will run all unit tests. To verify that all css selectors still work, explicitly run the end-to-end tests `rspec spec/end-to-end/`.
 
 **Adding data**
 
