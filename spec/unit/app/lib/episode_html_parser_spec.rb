@@ -1,4 +1,4 @@
-require_relative '../../../app/lib/episode_html_parser'
+require_relative '../../../../app/lib/episode_html_parser'
 
 RSpec.describe EpisodeHtmlParser do
   let(:parser) { described_class.new(html_file) }

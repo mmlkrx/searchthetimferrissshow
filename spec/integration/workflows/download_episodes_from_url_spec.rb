@@ -1,4 +1,4 @@
-require_relative '../../../app/workflows/download_episodes_from_url'
+require_relative '../../../utils/workflows/download_episodes_from_url'
 #
 # Run this test occasionally to ensure the blogs css hasn't changed
 #

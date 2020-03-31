@@ -1,11 +1,12 @@
+require 'open-uri'
 require 'nokogiri'
-require_relative '../lib/nokogiri_helper'
-require_relative '../lib/download_episode'
+require_relative '../nokogiri_helper'
+require_relative '../download_episode'
 
 class Workflow
-  class DownloadEpisodesFromFile
-    def self.call(file_path)
-      doc = Nokogiri::HTML(File.read(file_path))
+  class DownloadEpisodesFromUrl
+    def self.call(url)
+      doc = Nokogiri::HTML(URI.open(url))
 
       episodes = find_all_episode_elements_in_html_doc(doc)
 

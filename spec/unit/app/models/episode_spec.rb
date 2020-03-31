@@ -1,4 +1,4 @@
-require_relative '../../../app/models/episode'
+require_relative '../../../../app/models/episode'
 
 RSpec.describe Episode do
   subject do

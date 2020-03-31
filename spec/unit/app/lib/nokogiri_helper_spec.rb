@@ -1,4 +1,4 @@
-require_relative '../../../app/lib/nokogiri_helper'
+require_relative '../../../../utils/nokogiri_helper'
 
 RSpec.describe NokogiriHelper do
   describe '.find_episode_elements' do

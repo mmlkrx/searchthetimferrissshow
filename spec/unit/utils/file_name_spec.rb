@@ -1,4 +1,4 @@
-require_relative '../../../app/lib/file_name'
+require_relative '../../../utils/file_name'
 
 RSpec.describe FileName do
   describe '.from_uri' do
