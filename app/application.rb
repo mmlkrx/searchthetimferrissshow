@@ -1,13 +1,13 @@
 require 'rack/app'
-require 'rack/app/front_end'
+require 'erb'
 require_relative 'lib/full_text_search'
 
 class App < Rack::App
-  extend Rack::App::FrontEnd
-
   get '/' do
-    @query    = params['q']
-    @episodes = FullTextSearch.find_episodes(@query)
-    render './views/index.html.erb'
+    query    = params['q']
+    episodes = FullTextSearch.find_episodes(query)
+    template = ERB.new(File.read('/app/app/views/index.html.erb')) # TODO: This will break on systems not using the docker setup
+
+    template.result_with_hash(query: query, episodes: episodes)
   end
 end

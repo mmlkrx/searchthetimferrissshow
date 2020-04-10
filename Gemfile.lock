@@ -17,9 +17,6 @@ GEM
     rack (2.2.2)
     rack-app (7.6.1)
       rack
-    rack-app-front_end (0.22.0)
-      rack-app (>= 6.3.1)
-      tilt
     rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -34,7 +31,6 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
-    tilt (2.0.10)
 
 PLATFORMS
   ruby
@@ -45,7 +41,6 @@ DEPENDENCIES
   pry (~> 0.13)
   puma (~> 4.3)
   rack-app (~> 7.6)
-  rack-app-front_end (~> 0.22)
   rake (~> 13.0)
   rspec (~> 3.9)
 

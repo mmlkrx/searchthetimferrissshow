@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rack-app', '~>7.6'
-gem 'rack-app-front_end', '~>0.22'
 gem 'puma', '~>4.3'
 gem 'pg', '~>1.2'
 

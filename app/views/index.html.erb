@@ -11,16 +11,16 @@
       <div>
         <form>
           <div id="search-wrapper">
-            <input autofocus type="text" name="q" placeholder="Start typing and press enter to search..." value="<%= @query %>" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
+            <input autofocus type="text" name="q" placeholder="Start typing and press enter to search..." value="<%= query %>" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value">
           </div>
           <button type="submit">Search</button>
         </form>
       </div>
-      <% if @episodes.empty? && !@query.nil? %>
-        <h2><%= "There are no search results for '#{@query}'"%></h2>
+      <% if episodes.empty? && !query.nil? %>
+        <h2><%= "There are no search results for '#{query}'"%></h2>
       <% else %>
         <div id="results-wrapper">
-          <% @episodes.each do |episode| %>
+          <% episodes.each do |episode| %>
             <div class="result">
               <h3><%= episode.title %></h3>
               <p><%= episode.description %></p>
