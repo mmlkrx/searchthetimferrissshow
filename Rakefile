@@ -3,6 +3,7 @@ require 'pg'
 require_relative './config/environment'
 require_relative './utils/workflows/download_episodes_from_file'
 require_relative './utils/workflows/download_episodes_from_url'
+require_relative './utils/data/data_collection/api'
 require_relative './app/models/episode'
 
 desc 'download episode html files; optionally accepts html file'
