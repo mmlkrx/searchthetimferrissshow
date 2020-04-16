@@ -1,8 +1,9 @@
 require 'open-uri'
+require_relative '../data_collection'
 
 module DataCollection
   module BinaryFile
-    def self.download_pdf(url:, dest: '')
+    def self.download_pdf(url:, dest: nil)
       dest = dest || DataCollection::Config::DOWNLOAD_DIR_PDF
 
       URI.open(url) do |io|
