@@ -1,6 +1,6 @@
-require_relative '../../../../../utils/data/data_processing/extract_from_html'
+require_relative '../../../../../utils/data/data_processing/extract_text_from_html'
 
-RSpec.describe DataProcessing::ExtractFromHtml do
+RSpec.describe DataProcessing::ExtractTextFromHtml do
   describe '.with_filter' do
     subject { described_class.with_filter(path: path, filter: filter) }
 
@@ -21,14 +21,13 @@ RSpec.describe DataProcessing::ExtractFromHtml do
       end
     end
 
-    context 'matching filter for urls' do
-      let(:filter) { '//a[starts-with(@href, "https://tim.blog")]' }
+    context 'matching filter for elements with text' do
+      let(:filter) { '//p' }
 
-      it 'returns an array of url strings' do
+      it 'returns an array of text strings' do
         actual = subject
         expect(actual).to be_a Array
         expect(actual.first).to be_a String
-        expect(URI.parse(actual.first)).to be_a URI::HTTP
       end
     end
   end

@@ -1,14 +1,11 @@
-require 'nokogiri'
-
 module DataProcessing
-  module ExtractFromHtml
+  module ExtractTextFromHtml
     def self.with_filter(path:, filter:)
-      # TODO: wrap nokogiri
       doc = Nokogiri::HTML(File.read(path))
 
       res = doc.xpath(filter)
 
-      res.map { |node| node.respond_to?(:attr) ? node.attr('href') : node }
+      res.map { |node| node.respond_to?(:text) ? node.text : node }
     end
   end
 end
