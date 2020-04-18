@@ -9,6 +9,7 @@ require_relative './utils/data/data_collection/web_page'
 require_relative './utils/data/data_collection/binary_file'
 require_relative './utils/data/data_processing/extract_url_from_html'
 require_relative './utils/data/data_processing/extract_text_from_html'
+require_relative './utils/data/data_processing/extract_transcript_from_pdf'
 require_relative './utils/data/data_processing/filters'
 require_relative './app/models/episode'
 
