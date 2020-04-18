@@ -9,4 +9,5 @@ group :development, :test do
   gem 'pry', '~>0.13'
   gem 'rake', '~>13.0'
   gem 'rspec', '~>3.9'
+  gem 'pdf-reader', '~>2.4'
 end
