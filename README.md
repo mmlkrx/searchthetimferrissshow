@@ -37,6 +37,19 @@ Data is extracted from HTML documents. Follow these steps to download new blog p
    $ rake db:build_ts_documents
    ```
 
+**Not starting from scratch**
+
+`db/starter_db/` contains a starter database with `title`, `number`, `show_notes_url`, and `transcript` for the first 150 episodes (except for some cases where episodes don't have a transcript or show notes).
+
+To use this data, first create a database, i.e, `starter_db` and then run:
+
+```
+$ psql -h pgserver -U stfs starter_db < db/starter_db/starter_db_schema.sql
+$ gunzip -c db/starter_db/starter_db_data.gz | psql -h pgserver -U stfs starter_db
+```
+
+You can now build on this database or [dump the episodes table and import it into your existing database](https://stackoverflow.com/a/9929608).
+
 **Trying it out**
 
 Now that everything is set up, inside the app docker container, run `rake server` and open your browser at `localhost:9292` to access the web interface.
