@@ -12,14 +12,6 @@ RSpec.describe EpisodeHtmlParser do
     end
   end
 
-  describe '#extract_publishing_date' do
-    subject { parser.extract_publishing_date }
-
-    it 'returns the correct publishing date' do
-      expect(subject).to eq '2017-09-13T14:21:52+00:00'
-    end
-  end
-
   describe '#extract_url' do
     subject { parser.extract_url }
 

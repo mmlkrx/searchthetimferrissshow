@@ -1,11 +1,10 @@
 require_relative '../lib/episode_html_parser'
 
 class Episode
-  attr_accessor :title, :publishing_date, :description, :url
+  attr_accessor :title, :description, :url
 
-  def initialize(title:, publishing_date:, description:, url:)
+  def initialize(title:, description:, url:)
     @title           = title
-    @publishing_date = Date.parse(publishing_date)
     @description     = description
     @url             = url
   end
@@ -14,10 +13,9 @@ class Episode
     parser = EpisodeHtmlParser.new(html_episode)
 
     title = parser.extract_title
-    publishing_date = parser.extract_publishing_date
     description = parser.filtered_description
     url = parser.extract_url
 
-    new(title: title, publishing_date: publishing_date, description: description, url: url)
+    new(title: title, description: description, url: url)
   end
 end

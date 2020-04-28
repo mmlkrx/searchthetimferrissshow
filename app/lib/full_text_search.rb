@@ -8,7 +8,6 @@ class FullTextSearch
     sql_query = <<~SQL
       SELECT
         ts_headline(title, keywords, 'HighlightAll=true') AS title,
-        publishing_date,
         ts_headline(description, keywords, 'MaxFragments=2,MaxWords=20,MinWords=19') AS description,
         url
       FROM episodes, plainto_tsquery($1) AS keywords
@@ -23,7 +22,6 @@ class FullTextSearch
     res.map do |record|
       Episode.new(
         title: record['title'],
-        publishing_date: record['publishing_date'],
         description: record['description'],
         url: record['url'],
       )

@@ -110,8 +110,8 @@ namespace :db do
     Dir['html_files/episodes/*'].each_with_index do |file, i|
       begin
         episode = Episode.new_from_html(File.read(file))
-        @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, publishing_date, description, url) VALUES ($1, $2, $3, $4)')
-        @conn.exec_prepared("statement-#{i}", [episode.title, episode.publishing_date, episode.description, episode.url])
+        @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, description, url) VALUES ($1, $2, $3)')
+        @conn.exec_prepared("statement-#{i}", [episode.title, episode.description, episode.url])
         puts "Inserted #{episode.title}"
       rescue PG::UniqueViolation => error
         puts "Already exists: #{episode.title}"

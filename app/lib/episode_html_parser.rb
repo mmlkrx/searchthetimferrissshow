@@ -12,12 +12,6 @@ class EpisodeHtmlParser
     doc.css("h1[class='entry-title']").text
   end
 
-  def extract_publishing_date
-    # TODO: infer this from file name, possible put into EpisodeLink class
-    #       with file_name.rb. Just store date in db, not datetime.
-    doc.css('time').first.attributes['datetime'].value
-  end
-
   def extract_url
     doc.css("link[rel='canonical']")[0]['href']
   end

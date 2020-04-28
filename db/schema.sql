@@ -2,58 +2,44 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.9
--- Dumped by pg_dump version 9.5.8
+-- Dumped from database version 12.2 (Debian 12.2-2.pgdg100+1)
+-- Dumped by pg_dump version 12.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
-SET search_path = public, pg_catalog;
-
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
--- Name: episodes; Type: TABLE; Schema: public; Owner: postgres
+-- Name: episodes; Type: TABLE; Schema: public; Owner: stfs
 --
 
-CREATE TABLE episodes (
+CREATE TABLE public.episodes (
     id integer NOT NULL,
     title text NOT NULL,
-    publishing_date date NOT NULL,
     description text NOT NULL,
     document tsvector,
     url text NOT NULL
 );
 
 
-ALTER TABLE episodes OWNER TO postgres;
+ALTER TABLE public.episodes OWNER TO stfs;
 
 --
--- Name: episodes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: episodes_id_seq; Type: SEQUENCE; Schema: public; Owner: stfs
 --
 
-CREATE SEQUENCE episodes_id_seq
+CREATE SEQUENCE public.episodes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -61,55 +47,46 @@ CREATE SEQUENCE episodes_id_seq
     CACHE 1;
 
 
-ALTER TABLE episodes_id_seq OWNER TO postgres;
+ALTER TABLE public.episodes_id_seq OWNER TO stfs;
 
 --
--- Name: episodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: episodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stfs
 --
 
-ALTER SEQUENCE episodes_id_seq OWNED BY episodes.id;
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY episodes ALTER COLUMN id SET DEFAULT nextval('episodes_id_seq'::regclass);
+ALTER SEQUENCE public.episodes_id_seq OWNED BY public.episodes.id;
 
 
 --
--- Name: episodes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: episodes id; Type: DEFAULT; Schema: public; Owner: stfs
 --
 
-ALTER TABLE ONLY episodes
+ALTER TABLE ONLY public.episodes ALTER COLUMN id SET DEFAULT nextval('public.episodes_id_seq'::regclass);
+
+
+--
+-- Name: episodes episodes_pkey; Type: CONSTRAINT; Schema: public; Owner: stfs
+--
+
+ALTER TABLE ONLY public.episodes
     ADD CONSTRAINT episodes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: episodes_title_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: episodes episodes_title_key; Type: CONSTRAINT; Schema: public; Owner: stfs
 --
 
-ALTER TABLE ONLY episodes
+ALTER TABLE ONLY public.episodes
     ADD CONSTRAINT episodes_title_key UNIQUE (title);
 
 
 --
--- Name: episodes_document_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: episodes_document_idx; Type: INDEX; Schema: public; Owner: stfs
 --
 
-CREATE INDEX episodes_document_idx ON episodes USING gin (document);
-
-
---
--- Name: public; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
+CREATE INDEX episodes_document_idx ON public.episodes USING gin (document);
 
 
 --
 -- PostgreSQL database dump complete
 --
+
