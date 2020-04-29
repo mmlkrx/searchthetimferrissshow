@@ -49,4 +49,4 @@ Now that everything is set up, inside the app docker container, run `rake server
 
 **Tests**
 
-Running `rspec` inside the app container will run all unit tests. To verify that all css selectors still work, explicitly run the end-to-end tests `rspec spec/end-to-end/`.
+Running `rspec` inside the app container will run all tests.

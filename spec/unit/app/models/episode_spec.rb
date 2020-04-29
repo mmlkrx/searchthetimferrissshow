@@ -16,22 +16,4 @@ RSpec.describe Episode do
   it { is_expected.to respond_to :title }
   it { is_expected.to respond_to :show_notes_url }
   it { is_expected.to respond_to :transcript}
-
-  describe '.new_from_html' do
-    subject { described_class.new_from_html(html_episode) }
-
-    let(:html_episode) { File.read('spec/fixtures/2017-09-13-ray-dalio.html') }
-
-    it { is_expected.to be_a Episode }
-
-    it 'delegates title to EpisodeHtmlParser' do
-      expect_any_instance_of(EpisodeHtmlParser).to receive(:extract_title)
-      subject
-    end
-
-    it 'delegates show_notes_url to EpisodeHtmlParser' do
-      expect_any_instance_of(EpisodeHtmlParser).to receive(:extract_url)
-      subject
-    end
-  end
 end

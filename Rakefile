@@ -2,8 +2,6 @@ require 'pry'
 require 'pg'
 require 'cgi'
 require_relative './config/environment'
-require_relative './utils/workflows/download_episodes_from_file'
-require_relative './utils/workflows/download_episodes_from_url'
 require_relative './utils/data/data_collection'
 require_relative './utils/data/data_collection/api'
 require_relative './utils/data/data_collection/web_page'
@@ -12,22 +10,6 @@ require_relative './utils/data/data_processing/extract_text_from_html'
 require_relative './utils/data/data_processing/filters'
 require_relative './utils/data/data_processing/extract_episode_number_from_title'
 require_relative './app/models/episode'
-
-desc 'download episode html files; optionally accepts html file'
-task :download_episodes, [:file] do |_, args|
-  #
-  # By default 'https://tim.blog/podcast/' only lists the 10 latest episodes.
-  # To get around this, open the url in your browser and manually load older
-  # episodes by clicking on 'LOAD MORE PODCASTS', or use javascript to do it for you ;)
-  # setInterval(function () {document.getElementById("load-more-podcasts").click();}, 1000);
-  # Then save the page source as a file and pass its path to the rake task.
-  #
-  if args.file
-    Workflow::DownloadEpisodesFromFile.call(args.file)
-  else
-    Workflow::DownloadEpisodesFromUrl.call('https://tim.blog/podcast/')
-  end
-end
 
 desc 'start a console'
 task console: ['db:connect'] do
@@ -79,15 +61,6 @@ namespace :db do
     end
   end
 
-  desc 'seed database from html files'
-  task seed: :connect do
-    Dir['html_files/episodes/*'].each_with_index do |file, i|
-      episode = Episode.new_from_html(File.read(file))
-      @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, url) VALUES ($1, $2)')
-      @conn.exec_prepared("statement-#{i}", [episode.title, episode.url])
-      puts "Inserted #{episode.title}"
-    end
-  end
     end
   end
 
