@@ -28,7 +28,8 @@ CREATE TABLE public.episodes (
     id integer NOT NULL,
     title text,
     document tsvector,
-    show_notes_url text
+    show_notes_url text,
+    transcript text
 );
 
 

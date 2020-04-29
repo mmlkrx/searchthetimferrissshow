@@ -95,7 +95,8 @@ namespace :db do
   task build_ts_documents: :connect do
     sql = <<~SQL
       UPDATE episodes SET document =
-        setweight(to_tsvector(title), 'A')
+        setweight(to_tsvector(title), 'A') ||
+        setweight(to_tsvector(transcript), 'B')
       WHERE document IS NULL;
     SQL
     res = @conn.exec(sql)
