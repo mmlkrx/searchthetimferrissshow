@@ -10,7 +10,6 @@ require_relative './utils/data/data_collection/web_page'
 require_relative './utils/data/data_collection/binary_file'
 require_relative './utils/data/data_processing/extract_url_from_html'
 require_relative './utils/data/data_processing/extract_text_from_html'
-require_relative './utils/data/data_processing/extract_transcript_from_pdf'
 require_relative './utils/data/data_processing/filters'
 require_relative './utils/data/data_processing/extract_episode_number_from_title'
 require_relative './app/models/episode'
@@ -53,30 +52,6 @@ namespace :db do
   desc 'load the table schema'
   task :schema_load do
     system "psql -h #{Config::Db.host} -p #{Config::Db.port} -U #{Config::Db.user} #{Config::Db.name} < db/schema.sql"
-  end
-
-  desc 'takes all pdfs under data/pdfs/ and extracts transcript and episode number'
-  task insert_transcript_and_episode_number_from_pdf: :connect do
-    # Files were downloaded with DataCollection::BinaryFile.download_pdf
-    # Files look like 106-scott-adams.pdf, 01-kevin-rose.pdf
-    pdfs = Dir['data/pdfs/*.pdf']
-
-    # This sorts them by number
-    sorted = pdfs.sort.map do |path|
-      ep_num = File.basename(path)[0..2].to_i
-      [ep_num, path]
-    end.sort_by{ |ary| ary[0] }
-
-    sorted.each_with_index do |array, i|
-      ep_num = array[0]
-      path = array[1]
-      transcript = DataProcessing::ExtractTranscriptFromPdf.call(path: path).join("\n\n").strip
-
-      puts "Inserting:\n\n#{transcript[0..2000]}"
-
-      @conn.prepare("statement-#{i}", 'INSERT INTO episodes (number, transcript) VALUES ($1, $2)')
-      res = @conn.exec_prepared("statement-#{i}", [ep_num, transcript])
-    end
   end
 
   desc 'add the show notes url and title to a specific episode'
