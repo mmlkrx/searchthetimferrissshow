@@ -91,13 +91,13 @@ namespace :db do
     end
   end
 
-  desc 'build text search documents'
-  task build_ts_documents: :connect do
+  desc 'build text search documents for every transcript'
+  task generate_tsvector_for_transcripts: :connect do
     sql = <<~SQL
-      UPDATE episodes SET document =
+      UPDATE episodes SET transcript_ts =
         setweight(to_tsvector(title), 'A') ||
         setweight(to_tsvector(transcript), 'B')
-      WHERE document IS NULL;
+      WHERE transcript_ts IS NULL;
     SQL
     res = @conn.exec(sql)
     p res

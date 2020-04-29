@@ -16,25 +16,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: episodes; Type: TABLE; Schema: public; Owner: stfs
---
-
-CREATE TABLE public.episodes (
-    id integer NOT NULL,
-    title text,
-    document tsvector,
-    show_notes_url text,
-    transcript text
-);
-
-
-ALTER TABLE public.episodes OWNER TO stfs;
-
 --
 -- Name: episodes_id_seq; Type: SEQUENCE; Schema: public; Owner: stfs
 --
@@ -49,18 +30,32 @@ CREATE SEQUENCE public.episodes_id_seq
 
 ALTER TABLE public.episodes_id_seq OWNER TO stfs;
 
---
--- Name: episodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stfs
---
+SET default_tablespace = '';
 
-ALTER SEQUENCE public.episodes_id_seq OWNED BY public.episodes.id;
-
+SET default_table_access_method = heap;
 
 --
--- Name: episodes id; Type: DEFAULT; Schema: public; Owner: stfs
+-- Name: episodes; Type: TABLE; Schema: public; Owner: stfs
 --
 
-ALTER TABLE ONLY public.episodes ALTER COLUMN id SET DEFAULT nextval('public.episodes_id_seq'::regclass);
+CREATE TABLE public.episodes (
+    id integer DEFAULT nextval('public.episodes_id_seq'::regclass) NOT NULL,
+    title text,
+    show_notes_url text,
+    transcript text,
+    number smallint NOT NULL,
+    transcript_ts tsvector
+);
+
+
+ALTER TABLE public.episodes OWNER TO stfs;
+
+--
+-- Name: episodes episodes_number_key; Type: CONSTRAINT; Schema: public; Owner: stfs
+--
+
+ALTER TABLE ONLY public.episodes
+    ADD CONSTRAINT episodes_number_key UNIQUE (number);
 
 
 --
@@ -69,13 +64,6 @@ ALTER TABLE ONLY public.episodes ALTER COLUMN id SET DEFAULT nextval('public.epi
 
 ALTER TABLE ONLY public.episodes
     ADD CONSTRAINT episodes_pkey PRIMARY KEY (id);
-
-
---
--- Name: episodes_document_idx; Type: INDEX; Schema: public; Owner: stfs
---
-
-CREATE INDEX episodes_document_idx ON public.episodes USING gin (document);
 
 
 --

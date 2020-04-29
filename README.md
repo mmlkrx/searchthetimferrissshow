@@ -21,34 +21,27 @@ $ docker run --rm --name app --network stfsnet -it -v $(pwd):/app -p 127.0.0.1:9
 
 **To do anything useful, let's add some data:**
 
-Data is extracted from HTML documents. Follow these steps to download new blog posts and seed the database from the resulting files:
-
-1. Download and store html documents for each episode to `html_files/episodes/`
-   ```shell
-   $ rake download_episodes
-   ```
-2. Seed the database from the downloaded html files
-   ```shell
-   $ rake db:schema_load
-   $ rake db:seed
-   ```
-3. Build a [text search document](https://www.postgresql.org/docs/10/static/textsearch-intro.html#textsearch-document) for each entry
-   ```shell
-   $ rake db:build_ts_documents
-   ```
-
-**Not starting from scratch**
-
 `db/starter_db/` contains a starter database with `title`, `number`, `show_notes_url`, and `transcript` for the first 150 episodes (except for some cases where episodes don't have a transcript or show notes).
 
-To use this data, first create a database, i.e, `starter_db` and then run:
+To use this data, let's import our database schema:
 
-```
-$ psql -h pgserver -U stfs starter_db < db/starter_db/starter_db_schema.sql
-$ gunzip -c db/starter_db/starter_db_data.gz | psql -h pgserver -U stfs starter_db
+```shell
+$ rake db:schema_load
 ```
 
-You can now build on this database or [dump the episodes table and import it into your existing database](https://stackoverflow.com/a/9929608).
+Now let's add the first 150 episodes:
+
+```shell
+$ gunzip -c db/starter_db/starter_db_data.gz | psql -h pgserver -U stfs stfs
+```
+
+**Hint:** if the current application databases' schema diverts too much from what the data dump expects, just use `db/starter_db/starter_db_schema.sql` instead of `db/schema.sql` and [migrate the data to your current database](https://stackoverflow.com/a/9929608).
+
+The final step is to generate a `tsvector` for every transcript in the database. Without this the search won't work.
+
+```shell
+$ rake db:generate_tsvector_for_transcripts
+```
 
 **Trying it out**
 
