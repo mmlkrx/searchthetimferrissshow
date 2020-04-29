@@ -9,7 +9,7 @@ class FullTextSearch
       SELECT
         ts_headline(title, keywords, 'HighlightAll=true') AS title,
         ts_headline(transcript, keywords, 'MaxFragments=3,MaxWords=40,MinWords=20') AS transcript,
-        url
+        show_notes_url
       FROM episodes, plainto_tsquery($1) AS keywords
       WHERE document @@ keywords
       ORDER BY ts_rank(document, keywords) DESC;
@@ -23,7 +23,7 @@ class FullTextSearch
       Episode.new(
         title: record['title'],
         transcript: record['transcript'],
-        url: record['url'],
+        show_notes_url: record['show_notes_url'],
       )
     end
   end
