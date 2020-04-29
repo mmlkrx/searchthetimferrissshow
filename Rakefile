@@ -61,6 +61,16 @@ namespace :db do
     end
   end
 
+  desc 'add transcript from html files'
+  task add_transcript: :connect do
+    html_files = Dir['data/web_pages/*.html']
+
+    html_files.each_with_index do |path, i|
+      transcript = DataProcessing::ExtractTextFromHtml.with_filter(path: path, filter: DataProcessing::Filters::TRANSCRIPT_HTML_TEXT).join("\n\n")
+      title = DataProcessing::ExtractTextFromHtml.with_filter(path: path, filter: DataProcessing::Filters::EPISODE_TITLE)[0]
+      ep_num = DataProcessing::ExtractEpisodeNumberFromTitle.call(title: title)
+      @conn.prepare("statement-#{i}", 'UPDATE episodes SET transcript = $1 WHERE number = $2')
+      res = @conn.exec_prepared("statement-#{i}", [transcript, ep_num])
     end
   end
 
