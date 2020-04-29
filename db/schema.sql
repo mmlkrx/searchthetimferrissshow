@@ -26,7 +26,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.episodes (
     id integer NOT NULL,
-    title text NOT NULL,
+    title text,
     document tsvector,
     show_notes_url text
 );
@@ -68,14 +68,6 @@ ALTER TABLE ONLY public.episodes ALTER COLUMN id SET DEFAULT nextval('public.epi
 
 ALTER TABLE ONLY public.episodes
     ADD CONSTRAINT episodes_pkey PRIMARY KEY (id);
-
-
---
--- Name: episodes episodes_title_key; Type: CONSTRAINT; Schema: public; Owner: stfs
---
-
-ALTER TABLE ONLY public.episodes
-    ADD CONSTRAINT episodes_title_key UNIQUE (title);
 
 
 --
