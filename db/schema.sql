@@ -27,7 +27,6 @@ SET default_table_access_method = heap;
 CREATE TABLE public.episodes (
     id integer NOT NULL,
     title text NOT NULL,
-    description text NOT NULL,
     document tsvector,
     url text NOT NULL
 );

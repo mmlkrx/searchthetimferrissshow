@@ -19,25 +19,4 @@ RSpec.describe EpisodeHtmlParser do
       expect(subject).to eq 'https://tim.blog/2017/09/13/ray-dalio/'
     end
   end
-
-  describe '#raw_description' do
-    subject { parser.raw_description }
-
-    it 'returns a node set ' do
-      expect(subject).to be_a Nokogiri::XML::NodeSet
-    end
-
-    it 'returns a node set with <p> as the first element' do
-      expect(subject.first.name).to eq 'p'
-    end
-  end
-
-  describe '#filtered_description' do
-    subject { parser.filtered_description }
-
-    it 'delegates to EpisodeFilter' do
-      expect(EpisodeFilter).to receive(:filter_description)
-      subject
-    end
-  end
 end

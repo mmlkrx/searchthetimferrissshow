@@ -110,8 +110,8 @@ namespace :db do
     Dir['html_files/episodes/*'].each_with_index do |file, i|
       begin
         episode = Episode.new_from_html(File.read(file))
-        @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, description, url) VALUES ($1, $2, $3)')
-        @conn.exec_prepared("statement-#{i}", [episode.title, episode.description, episode.url])
+        @conn.prepare("statement-#{i}", 'INSERT INTO episodes (title, url) VALUES ($1, $2)')
+        @conn.exec_prepared("statement-#{i}", [episode.title, episode.url])
         puts "Inserted #{episode.title}"
       rescue PG::UniqueViolation => error
         puts "Already exists: #{episode.title}"
@@ -123,8 +123,7 @@ namespace :db do
   task build_ts_documents: :connect do
     sql = <<~SQL
       UPDATE episodes SET document =
-        setweight(to_tsvector(title), 'A') ||
-        setweight(to_tsvector(description), 'B')
+        setweight(to_tsvector(title), 'A')
       WHERE document IS NULL;
     SQL
     res = @conn.exec(sql)

@@ -1,5 +1,4 @@
 require 'nokogiri'
-require_relative './episode_filter'
 
 class EpisodeHtmlParser
   attr_reader :doc
@@ -14,13 +13,5 @@ class EpisodeHtmlParser
 
   def extract_url
     doc.css("link[rel='canonical']")[0]['href']
-  end
-
-  def raw_description
-    doc.css("div[class='entry-content']").css('p')
-  end
-
-  def filtered_description
-    EpisodeFilter.filter_description(raw_description)
   end
 end

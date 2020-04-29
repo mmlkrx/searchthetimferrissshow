@@ -4,17 +4,14 @@ RSpec.describe Episode do
   subject do
     described_class.new(
       title: title,
-      description: description,
       url: url,
     )
   end
 
-  let(:title)           { 'Ray Dalio' }
-  let(:description)     { 'Restless sinner, rest in sin.'}
-  let(:url)             { 'https://tim.blog/2017/09/13/ray-dalio/' }
+  let(:title) { 'Ray Dalio' }
+  let(:url)   { 'https://tim.blog/2017/09/13/ray-dalio/' }
 
   it { is_expected.to respond_to :title }
-  it { is_expected.to respond_to :description }
   it { is_expected.to respond_to :url }
 
   describe '.new_from_html' do
@@ -26,11 +23,6 @@ RSpec.describe Episode do
 
     it 'delegates title to EpisodeHtmlParser' do
       expect_any_instance_of(EpisodeHtmlParser).to receive(:extract_title)
-      subject
-    end
-
-    it 'delegates description to EpisodeHtmlParser' do
-      expect_any_instance_of(EpisodeHtmlParser).to receive(:filtered_description)
       subject
     end
 
