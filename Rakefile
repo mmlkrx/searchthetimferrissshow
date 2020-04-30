@@ -79,8 +79,8 @@ namespace :db do
     sql = <<~SQL
       UPDATE episodes SET transcript_ts =
         setweight(to_tsvector(title), 'A') ||
-        setweight(to_tsvector(transcript), 'B')
-      WHERE transcript_ts IS NULL;
+        setweight(to_tsvector(coalesce(transcript, '')), 'B')
+      WHERE transcript_ts IS NULL; # TODO: Why only where transcript_ts is null?
     SQL
     res = @conn.exec(sql)
     p res
