@@ -12,7 +12,8 @@ class FullTextSearch
         show_notes_url
       FROM episodes, websearch_to_tsquery($1) AS keywords
       WHERE transcript_ts @@ keywords
-      ORDER BY ts_rank(transcript_ts, keywords) DESC;
+      ORDER BY ts_rank(transcript_ts, keywords) DESC
+      LIMIT 10;
     SQL
 
     CONN.prepare(statement, sql_query)
