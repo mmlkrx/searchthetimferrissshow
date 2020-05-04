@@ -25,6 +25,10 @@ form > button {
   border-radius: 4px;
 }
 
+#results-wrapper {
+  margin-bottom: 6em;
+}
+
 input[type=text] {
   width: 100%;
   font-size: 16px;
