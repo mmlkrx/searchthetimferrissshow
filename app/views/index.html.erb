@@ -16,7 +16,7 @@
           <button type="submit">Search</button>
         </form>
       </div>
-      <% if episodes.empty? && !query.nil? %>
+      <% if episodes.empty? && !query.empty? %>
         <h2><%= "There are no search results for '#{query}'"%></h2>
       <% else %>
         <div id="results-wrapper">
@@ -28,6 +28,14 @@
             </div>
           <% end %>
         </div>
+        <% if episodes.count == 10 %>
+          <div class="flex justify-center">
+            <% if current_page > 1 %>
+              <a class="mr-4" href=<%= "/?q=#{CGI.escapeHTML(query)}&page=#{current_page - 1}" %>>Prev</a>
+            <% end %>
+            <a href=<%= "/?q=#{CGI.escapeHTML(query)}&page=#{current_page + 1}" %>>Next</a>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </body>

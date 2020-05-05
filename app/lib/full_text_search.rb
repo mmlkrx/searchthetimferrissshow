@@ -1,7 +1,7 @@
 require_relative '../models/episode'
 
 class FullTextSearch
-  def self.find_episodes(query)
+  def self.find_episodes(query, page)
     [] if query.nil?
 
     statement = "search"
@@ -13,11 +13,12 @@ class FullTextSearch
       FROM episodes, websearch_to_tsquery($1) AS keywords
       WHERE transcript_ts @@ keywords
       ORDER BY ts_rank(transcript_ts, keywords) DESC
+      OFFSET $2
       LIMIT 10;
     SQL
 
     CONN.prepare(statement, sql_query)
-    res = CONN.exec_prepared(statement, [query])
+    res = CONN.exec_prepared(statement, [query, calculate_offset(page)])
     CONN.exec("DEALLOCATE #{statement}")
 
     res.map do |record|
@@ -27,5 +28,12 @@ class FullTextSearch
         show_notes_url: record['show_notes_url'],
       )
     end
+  end
+
+  private
+
+  def self.calculate_offset(page)
+    per_page = 10
+    offset = per_page * (page - 1)
   end
 end
