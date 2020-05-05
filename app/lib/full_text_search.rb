@@ -10,11 +10,15 @@ class FullTextSearch
         ts_headline(title, keywords, 'HighlightAll=true') AS title,
         ts_headline(transcript, keywords, 'MaxFragments=3,MaxWords=40,MinWords=20,FragmentDelimiter=<br><br>') AS transcript,
         show_notes_url
-      FROM episodes, websearch_to_tsquery($1) AS keywords
-      WHERE transcript_ts @@ keywords
-      ORDER BY ts_rank(transcript_ts, keywords) DESC
-      OFFSET $2
-      LIMIT 10;
+      FROM
+        (
+          SELECT title, transcript, show_notes_url, keywords
+          FROM episodes, websearch_to_tsquery($1) AS keywords
+          WHERE transcript_ts @@ keywords
+          ORDER BY ts_rank(transcript_ts, keywords) DESC
+          OFFSET $2
+          LIMIT 10
+        ) AS t;
     SQL
 
     CONN.prepare(statement, sql_query)
