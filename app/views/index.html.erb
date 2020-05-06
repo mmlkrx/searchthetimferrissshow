@@ -29,7 +29,7 @@
           <% end %>
         </div>
         <% if episodes.count == 10 %>
-          <div class="flex justify-center">
+          <div class="flex justify-center mb-8">
             <% if current_page > 1 %>
               <a class="mr-4" href=<%= "/?q=#{CGI.escapeHTML(query)}&page=#{current_page - 1}" %>>Prev</a>
             <% end %>

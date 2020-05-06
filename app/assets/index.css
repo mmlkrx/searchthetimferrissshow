@@ -2,6 +2,19 @@
   font-family: helvetica;
 }
 
+b {
+  color: rgb(237, 93, 64);
+}
+
+p {
+  margin: .5em 0 .5em 0;
+}
+
+a {
+  text-decoration: none;
+  color: #565656;
+}
+
 form {
   display: flex;
   margin-top: 6em;
@@ -38,14 +51,6 @@ input[type=text] {
   outline: none;
 }
 
-b {
-  color: rgb(237, 93, 64);
-}
-
-p {
-  margin: .5em 0 .5em 0;
-}
-
 .result {
   padding: 1em;
   border-radius: 3px;
@@ -75,4 +80,8 @@ p {
 
 .mr-4 {
   margin-right: 1rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
