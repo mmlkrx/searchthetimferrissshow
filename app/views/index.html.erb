@@ -6,8 +6,8 @@
     <title>STFS</title>
     <link rel="stylesheet" href="assets/index.css">
   </head>
-  <body>
-    <div id="main-wrapper">
+  <body class="flex flex-col min-h-screen">
+    <div id="main-wrapper" class="flex-grow">
       <div>
         <form>
           <div id="search-wrapper">
@@ -38,5 +38,13 @@
         <% end %>
       <% end %>
     </div>
+    <footer class="flex justify-between text-sm text-gray-800">
+      <div>
+        <p><span>last episode added: </span><span class="text-gray-600">Morgan Spurlock: Inside the Mind of a Human Guinea Pig (#150)</span></p>
+      </div>
+      <div>
+        <p class="inline-block">made by</p><span><a class="text-gray-600" href="https://github.com/mmlkrx" target="_blank"> mmlkrx</a></span>
+      </div>
+    </footer>
   </body>
 </html>

@@ -74,8 +74,24 @@ input[type=text] {
   display: flex;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .mr-4 {
@@ -84,4 +100,20 @@ input[type=text] {
 
 .mb-8 {
   margin-bottom: 2rem;
+}
+
+.text-sm {
+  font-size: .875rem;
+}
+
+.text-gray-600 {
+  color: #718096;
+}
+
+.text-gray-800 {
+  color: #2d3748;
+}
+
+.inline-block {
+  display: inline-block;
 }
