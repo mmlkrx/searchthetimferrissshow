@@ -78,9 +78,8 @@ namespace :db do
   task generate_tsvector_for_transcripts: :connect do
     sql = <<~SQL
       UPDATE episodes SET transcript_ts =
-        setweight(to_tsvector(title), 'A') ||
-        setweight(to_tsvector(coalesce(transcript, '')), 'B')
-      WHERE transcript_ts IS NULL; # TODO: Why only where transcript_ts is null?
+        setweight(to_tsvector('english', title), 'A') ||
+        setweight(to_tsvector('english', coalesce(transcript, '')), 'B');
     SQL
     res = @conn.exec(sql)
     p res

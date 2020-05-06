@@ -13,7 +13,7 @@ class FullTextSearch
       FROM
         (
           SELECT title, transcript, show_notes_url, keywords
-          FROM episodes, websearch_to_tsquery($1) AS keywords
+          FROM episodes, websearch_to_tsquery('english', $1) AS keywords
           WHERE transcript_ts @@ keywords
           ORDER BY ts_rank(transcript_ts, keywords) DESC
           OFFSET $2
