@@ -15,6 +15,10 @@ a {
   color: #565656;
 }
 
+body {
+  margin: 0 1rem 0 1rem;
+}
+
 form {
   display: flex;
   margin-top: 6em;
