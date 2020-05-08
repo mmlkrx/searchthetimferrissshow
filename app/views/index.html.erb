@@ -31,9 +31,9 @@
         <% if episodes.count == 10 %>
           <div class="flex justify-center mb-8">
             <% if current_page > 1 %>
-              <a class="mr-4" href=<%= "/?q=#{CGI.escapeHTML(query)}&page=#{current_page - 1}" %>>Prev</a>
+              <a class="mr-4" href=<%= "/?q=#{CGI.escape(query)}&page=#{current_page - 1}" %>>Prev</a>
             <% end %>
-            <a href=<%= "/?q=#{CGI.escapeHTML(query)}&page=#{current_page + 1}" %>>Next</a>
+            <a href=<%= "/?q=#{CGI.escape(query)}&page=#{current_page + 1}" %>>Next</a>
           </div>
         <% end %>
       <% end %>
