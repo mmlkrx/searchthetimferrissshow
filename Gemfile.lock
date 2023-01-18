@@ -14,7 +14,7 @@ GEM
       method_source (~> 1.0)
     puma (4.3.5)
       nio4r (~> 2.0)
-    rack (2.2.3)
+    rack (3.0.4.1)
     rack-app (7.6.1)
       rack
     rake (13.0.1)
